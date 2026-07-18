@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.voidclient.ui.SettingsController"
+      spacing="16" styleClass="view-root">
+
+    <Label text="Einstellungen" styleClass="view-title" />
+    <Label text="Account-Verwaltung, Java-Argumente, RAM-Zuweisung." styleClass="view-subtitle" />
+
+    <VBox spacing="10" styleClass="settings-card" maxWidth="420">
+        <Label text="Microsoft-Konto" styleClass="card-heading" />
+        <Label fx:id="accountStatusLabel" text="Nicht angemeldet" styleClass="status-label" />
+        <Button fx:id="loginButton" text="Anmelden" onAction="#onLoginClicked" styleClass="btn-primary" />
+    </VBox>
+
+</VBox>

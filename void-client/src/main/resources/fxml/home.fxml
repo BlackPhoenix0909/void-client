@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.voidclient.ui.HomeController"
+      spacing="18" styleClass="view-root">
+
+    <Label text="Willkommen zurück" styleClass="view-title" />
+    <Label text="Wähle ein Profil oder starte direkt." styleClass="view-subtitle" />
+
+    <VBox fx:id="instanceList" spacing="10" />
+
+</VBox>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.voidclient.ui.ModsController"
+      spacing="16" styleClass="view-root">
+
+    <Label text="Mods durchsuchen" styleClass="view-title" />
+    <Label text="Direkt über die Modrinth-API — Suche, Version, Installieren." styleClass="view-subtitle" />
+
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="z. B. Sodium, Iris, Xaeros Minimap …" HBox.hgrow="ALWAYS" styleClass="search-field" />
+        <Button fx:id="searchButton" text="Suchen" styleClass="btn-primary" />
+    </HBox>
+
+    <Label fx:id="statusLabel" styleClass="status-label" />
+
+    <ScrollPane fitToWidth="true" styleClass="results-scroll">
+        <FlowPane fx:id="resultsPane" hgap="14" vgap="14" />
+    </ScrollPane>
+
+</VBox>

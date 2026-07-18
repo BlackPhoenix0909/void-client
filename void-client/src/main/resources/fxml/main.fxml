@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.voidclient.ui.MainController"
+           styleClass="root-pane">
+
+    <BorderPane styleClass="app-shell">
+        <left>
+            <VBox styleClass="nav-bar" prefWidth="220.0">
+                <Label text="VOID." styleClass="brand-label" />
+                <Button text="Home" onAction="#onHomeClicked" styleClass="nav-item" maxWidth="Infinity" />
+                <Button text="Mods" onAction="#onModsClicked" styleClass="nav-item" maxWidth="Infinity" />
+                <Button text="Einstellungen" onAction="#onSettingsClicked" styleClass="nav-item" maxWidth="Infinity" />
+            </VBox>
+        </left>
+        <center>
+            <StackPane fx:id="contentPane" styleClass="content-pane" />
+        </center>
+    </BorderPane>
+
+    <StackPane fx:id="splashOverlay" styleClass="splash-overlay">
+        <Canvas fx:id="splashCanvas" width="1100" height="700" />
+        <Label text="V O I D   C L I E N T" styleClass="splash-label" />
+    </StackPane>
+
+</StackPane>

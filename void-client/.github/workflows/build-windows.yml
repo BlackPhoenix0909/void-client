@@ -1,0 +1,64 @@
+name: Build Windows EXE
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch: {}
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: JDK 21 einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Gradle einrichten (kein committeter Wrapper noetig)
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10"
+
+      - name: Fat-Jar bauen
+        run: gradle shadowJar --no-daemon
+
+      - name: Version aus build.gradle.kts lesen
+        id: version
+        shell: pwsh
+        run: |
+          $line = Select-String -Path build.gradle.kts -Pattern '^version = "(.+)"'
+          $ver = $line.Matches[0].Groups[1].Value
+          echo "value=$ver" >> $env:GITHUB_OUTPUT
+
+      - name: .exe mit jpackage bauen
+        shell: pwsh
+        run: |
+          jpackage `
+            --type exe `
+            --name VoidClient `
+            --input build/libs `
+            --main-jar void-client-${{ steps.version.outputs.value }}-all.jar `
+            --main-class com.voidclient.MainKt `
+            --icon src/main/resources/images/void-icon.ico `
+            --win-shortcut `
+            --win-menu `
+            --vendor "Void Client" `
+            --app-version ${{ steps.version.outputs.value }} `
+            --dest build/installer
+
+      - name: Installer als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoidClient-installer
+          path: build/installer/*.exe
+
+      - name: An GitHub Release anhaengen (nur bei Tag-Push)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/installer/*.exe

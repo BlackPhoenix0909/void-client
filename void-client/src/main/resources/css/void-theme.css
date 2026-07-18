@@ -1,0 +1,163 @@
+/*
+ * Void-Client Theme
+ * Farben identisch zum HTML-Preview (void-client-preview.html), damit UI-Feedback
+ * von Freunden direkt auf dieses Stylesheet uebertragbar ist.
+ */
+
+.root-pane {
+    -fx-background-color: #0a0a0a;
+}
+
+.app-shell {
+    -fx-background-color: #0a0a0a;
+}
+
+/* ---------- Navigation ---------- */
+.nav-bar {
+    -fx-background-color: #121016;
+    -fx-border-color: transparent #2a2233 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 24 0 24 0;
+}
+
+.brand-label {
+    -fx-text-fill: #f2eefc;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 24 28 24;
+}
+
+.nav-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a79bc2;
+    -fx-font-size: 13px;
+    -fx-padding: 13 24 13 24;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-transition: -fx-background-color 0.25s ease;
+}
+
+.nav-item:hover, .nav-item:pressed {
+    -fx-text-fill: #f2eefc;
+    -fx-background-color: linear-gradient(to right, rgba(184,0,255,0.16), transparent);
+}
+
+/* ---------- Content ---------- */
+.content-pane {
+    -fx-background-color: #0a0a0a;
+}
+
+.view-root {
+    -fx-background-color: #0a0a0a;
+    -fx-padding: 32 40 32 40;
+}
+
+.view-title {
+    -fx-text-fill: #f2eefc;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.view-subtitle {
+    -fx-text-fill: #a79bc2;
+    -fx-font-size: 13px;
+}
+
+.status-label {
+    -fx-text-fill: #a79bc2;
+    -fx-font-size: 12px;
+}
+
+/* ---------- Cards (Instanzen & Mod-Ergebnisse) ---------- */
+.instance-row, .mod-card, .settings-card {
+    -fx-background-color: #17141d;
+    -fx-border-color: #2a2233;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 16;
+}
+
+.instance-row:hover, .mod-card:hover {
+    -fx-border-color: #6a1fb8;
+    -fx-effect: dropshadow(gaussian, rgba(184,0,255,0.35), 18, 0.25, 0, 0);
+}
+
+.instance-name, .card-heading, .mod-title {
+    -fx-text-fill: #f2eefc;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.instance-meta, .mod-desc {
+    -fx-text-fill: #a79bc2;
+    -fx-font-size: 11.5px;
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+    -fx-background-color: linear-gradient(to bottom, #6a1fb8, #2c0051);
+    -fx-text-fill: #f2eefc;
+    -fx-border-color: #6a1fb8;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-effect: dropshadow(gaussian, rgba(184,0,255,0.5), 18, 0.3, 0, 0);
+}
+
+.btn-primary:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.btn-install {
+    -fx-background-color: transparent;
+    -fx-border-color: #6a1fb8;
+    -fx-text-fill: #d9a9ff;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12 6 12;
+    -fx-font-size: 11.5px;
+    -fx-cursor: hand;
+}
+
+.btn-install:hover {
+    -fx-background-color: rgba(184,0,255,0.15);
+    -fx-effect: dropshadow(gaussian, rgba(184,0,255,0.35), 12, 0.3, 0, 0);
+}
+
+/* ---------- Inputs ---------- */
+.search-field {
+    -fx-background-color: #17141d;
+    -fx-border-color: #2a2233;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #f2eefc;
+    -fx-prompt-text-fill: #6b6178;
+    -fx-padding: 10 14 10 14;
+}
+
+.search-field:focused {
+    -fx-border-color: #b800ff;
+    -fx-effect: dropshadow(gaussian, rgba(184,0,255,0.25), 8, 0.3, 0, 0);
+}
+
+.results-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+/* ---------- Splash Overlay ---------- */
+.splash-overlay {
+    -fx-background-color: #0a0a0a;
+}
+
+.splash-label {
+    -fx-text-fill: #a79bc2;
+    -fx-font-size: 14px;
+    -fx-letter-spacing: 4;
+}
