@@ -1,16 +1,3 @@
-<p align="center">
-  <img src="src/main/resources/images/void-icon.png" alt="Void Client Icon" width="160">
-</p>
-
-<h1 align="center">Void Client</h1>
-
-<p align="center">
-  Ein schlanker, modularer Minecraft-Launcher im eigenen Schwarz-Violett-Design —
-  Fabric-basiert, mit direkter Modrinth-Integration statt fest eingebauter Mods.
-</p>
-
----
-
 # Void Client — Grundgerüst
 
 Architektur nach Lunar-/Feather-Client-Vorbild: eigenständiger JavaFX-Launcher
@@ -33,7 +20,6 @@ src/main/kotlin/com/voidclient/
     ModrinthIntegrationManager.kt  searchMods() / installMod() inkl. Dependency-Resolution
   launch/
     GameLauncher.kt                Fabric-Profil laden, Libraries aufloesen, Prozess starten
-    MojangVersionManager.kt        Vanilla-Client-Jar ueber Mojang Version-Manifest beschaffen
   ui/
     MainController.kt              Navigation, Fade-Transitions, Partikel-Splash
     HomeController.kt              Profilliste + Start
@@ -44,8 +30,6 @@ src/main/kotlin/com/voidclient/
 src/main/resources/
   fxml/{main,home,mods,settings}.fxml
   css/void-theme.css               Schwarz-Violett-Theme (identisch zum HTML-Preview)
-  images/void-icon.ico             App-Icon fuer jpackage
-  images/void-icon.png             App-Icon fuer README/Anzeige
 ```
 
 ## Setup
@@ -61,6 +45,9 @@ kein Client-Secret noetig für den Device-Code-Flow).
 
 ## Bewusst offen gelassen (Blaupause, kein Full-Build)
 
+- **Vanilla-Client-Jar-Beschaffung**: Mojang Version-Manifest (`launchermeta.mojang.com`)
+  wird noch nicht abgefragt; `GameLauncher` erwartet aktuell einen bereits vorhandenen
+  Pfad zur `client.jar`.
 - **LWJGL-Natives-Extraktion**: fehlt, ist aber gut dokumentiert in Referenzprojekten
   wie `minecraft-launcher-lib`.
 - **Asset-Index-Download**: fehlt (Sounds/Sprachdateien), betrifft nicht den reinen
@@ -74,15 +61,16 @@ kein Client-Secret noetig für den Device-Code-Flow).
 
 ## Von GitHub zur .exe
 
-1. Projekt auf GitHub pushen (bereits erledigt).
-2. `.github/workflows/build-windows.yml` baut auf einem `windows-latest`-Runner
-   automatisch bei jedem Tag-Push (`git tag v0.1.0 && git push --tags`) oder
-   manuell über "Run workflow" im Actions-Tab.
+1. Projekt auf GitHub pushen (dieses ZIP entpackt als Repo-Root).
+2. `.github/workflows/build-windows.yml` ist bereits enthalten und baut auf einem
+   `windows-latest`-Runner automatisch bei jedem Tag-Push (`git tag v0.1.0 && git push --tags`)
+   oder manuell über "Run workflow" im Actions-Tab.
 3. Ablauf im Workflow: `gradle shadowJar` (Fat-Jar mit allen Abhängigkeiten) →
    `jpackage --type exe` (JDK-Bordmittel seit Java 14, bündelt automatisch eine
    passende Java-Laufzeit mit ein) → Upload als Artefakt + Anhang an das GitHub-Release.
 4. **Vor dem ersten Lauf ergänzen:**
-   - `src/main/resources/images/void-icon.ico` — erledigt.
+   - `src/main/resources/images/void-icon.ico` — ein eigenes 256x256-.ico-Icon
+     ablegen (im Repo aktuell nicht enthalten, sonst schlägt `jpackage` fehl).
    - Echte Azure-App-Client-ID in `MicrosoftAuthManager.kt` eintragen.
 5. `windows-latest`-Runner bringen WiX Toolset bereits vorinstalliert mit, das
    `jpackage` für `--type exe` intern braucht — kein zusätzlicher Setup-Schritt nötig.
